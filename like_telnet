@@ -1,0 +1,17 @@
+import socket
+host = input('address: ')
+port = int(input('port: '))
+while True:
+    message = input('message: ')
+    length = int(input('length: '))
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(1)
+        s.connect((host, port))
+        s.sendall(message.encode())
+        print(s.recv(length))
+    except:
+        s.close()
+        print('!!!TIMEOUT!!!')
+    s.close()
+
